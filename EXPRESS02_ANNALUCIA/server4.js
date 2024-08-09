@@ -14,7 +14,7 @@ const clientes = [
     telefone: "2222222222",
     email: "berin@gmail.com",
   },
-  { id: 3, nome: "Cenegundes", telefone: "333333333", email: "con@gmail.com" },
+  { id: 3, nome: "Conegundes", telefone: "333333333", email: "cne@gmail.com" },
   { id: 4, nome: "Desidério", telefone: "444444444", email: "desi@gmail.com" },
   { id: 5, nome: "Emengarda", telefone: "555555555", email: "emen@gmail.com" },
 ];
@@ -34,5 +34,10 @@ app.get("/clientes/:id", (req, res) => {
   const cliente = clientes.find((c) => c.id === parseInt(req.params.id));
 
   //se o cliente não existe
-  if (!cliente) res.status(404);
+  if (!cliente) res.status(404).send("Cliente não encontrado!!!");
+
+  //se o cliente existe, vamos apresentar uma frase de resposta
+  res.send(
+    `O cliente é: ${cliente.nome}, telefone: ${cliente.telefone}, email: ${cliente.email}`
+  );
 });
